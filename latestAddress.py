@@ -9,8 +9,8 @@ def combine_csv_files():
     files = os.listdir(os.getcwd())
     # Filter the list to include only CSV files with names like '123.csv'
     csv_files = [f for f in files if f.endswith('.csv') and f[:-4].isdigit()]
-    # Read each CSV file into a DataFrame and store them in a list
-    combined_dataframes = [pd.read_csv(f) for f in csv_files]
+    # Read each CSV file into a DataFrame with specified data type and low_memory=False
+    combined_dataframes = [pd.read_csv(f, dtype=str, low_memory=False) for f in csv_files]
     # Concatenate all DataFrames into a single DataFrame
     combined_df = pd.concat(combined_dataframes, ignore_index=True)
     # Write the combined DataFrame to 'final.csv' without including the index
